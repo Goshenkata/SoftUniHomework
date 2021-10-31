@@ -3,7 +3,7 @@ package com.ObjectsAndClasses.Exercise.AdvertismentMessage;
 import java.util.Random;
 import java.util.Scanner;
 
-public class AdvertismentMessage {
+public class Main {
 
     public static void main(String[] args) {
         String[] phrases = {"Excellent product.", "Such a great product.", "I always use that product.", "Best product of its category.", "Exceptional product.", "I can’t live without this product."};
@@ -17,7 +17,7 @@ public class AdvertismentMessage {
             String event = events[new Random().nextInt(events.length-1)];
             String author = authors[new Random().nextInt(authors.length-1)];
             String city = cities[new Random().nextInt(cities.length-1)];
-            Message message = new Message(phrase, event, author, city);
+            Message message = new   Message(phrase, event, author, city);
             System.out.println(message.toString());
         }
     }
