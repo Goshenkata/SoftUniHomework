@@ -1,9 +1,9 @@
 package com.ObjectsAndClasses.Exercise.Students;
 
 public class Student {
-    private String firstName;
-    private String lastNmae;
-    private double grade;
+    private final String firstName;
+    private final String lastNmae;
+    private final double grade;
 
     public Student(String firstName, String lastNmae, double grade) {
         this.firstName = firstName;

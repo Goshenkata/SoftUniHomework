@@ -18,7 +18,7 @@ public class Main {
             String author = authors[new Random().nextInt(authors.length-1)];
             String city = cities[new Random().nextInt(cities.length-1)];
             Message message = new   Message(phrase, event, author, city);
-            System.out.println(message.toString());
+            System.out.println(message);
         }
     }
 }

@@ -1,10 +1,10 @@
 package com.ObjectsAndClasses.Exercise.VehicleCatalogue;
 
 public class Vehicle {
-    private String type;
-    private String model;
-    private String color;
-    private int horsepower;
+    private final String type;
+    private final String model;
+    private final String color;
+    private final int horsepower;
 
     public Vehicle(String type, String model, String color, int horsepower) {
         this.type = type;
