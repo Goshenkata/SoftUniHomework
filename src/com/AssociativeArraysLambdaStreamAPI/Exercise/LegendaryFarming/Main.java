@@ -1,4 +1,4 @@
-package com.AssociativeArraysLambdaStreamAPI.LegendaryFarming;
+package com.AssociativeArraysLambdaStreamAPI.Exercise.LegendaryFarming;
 
 import java.util.*;
 
