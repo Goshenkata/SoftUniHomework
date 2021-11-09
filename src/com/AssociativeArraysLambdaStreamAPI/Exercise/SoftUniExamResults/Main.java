@@ -1,13 +1,16 @@
 package com.AssociativeArraysLambdaStreamAPI.Exercise.SoftUniExamResults;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+
+/**
+ * I'm losing my mind
+ **/
 
 public class Main {
     public static void main(String[] args) {
         //THE SCORE WILL BE SET TO -1 WHEN THE USER IS BANNED
         Map<String, Map<String, Integer>> mapOfSubmission = new HashMap<>();
+        Map<String, Integer> langMap = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         while (!input.equals("exam finished")) {
@@ -38,20 +41,71 @@ public class Main {
             }
             input = scanner.nextLine();
         }
+
         System.out.println("Results: ");
-        mapOfSubmission.forEach((key, value) -> value.entrySet()
-                .stream()
-                .sorted(Map.Entry.<String, Integer>comparingByValue()
-                        .reversed()
-                        .thenComparing(Map.Entry.comparingByKey()))
-                .filter(ent -> ent.getValue() != -1)
-                .forEach(s -> System.out.println(s.getKey() + " | " + s.getValue())));
+        List<Submission> submissions = new ArrayList<>();
+        mapOfSubmission.forEach((key, value) ->
+                value.forEach((k, v) -> submissions.add(new Submission(k, v)))
+        );
+        submissions.stream()
+                .sorted(Comparator.comparing(Submission::getScore).reversed()
+                        .thenComparing(Submission::getUser))
+                .filter(s -> s.getScore() != -1)
+                .forEach(System.out::println);
+
         System.out.println("Submissions:");
-        mapOfSubmission.entrySet()
-                .stream()
-                .sorted((n1, n2) -> Integer.compare(n2.getValue().size(), n1.getValue().size()))
-                .sorted(Map.Entry.comparingByKey())
-                .forEach(s -> System.out.println(s.getKey() + " - " + s.getValue().size()));
+        List<LangageStat> langageStats = new ArrayList<>();
+        mapOfSubmission.forEach((k, b) -> langageStats.add(new LangageStat(k, b.size())));
+        langageStats.stream()
+                .sorted(Comparator.comparing(LangageStat::getStat).reversed()
+                        .thenComparing(LangageStat::getName))
+                .forEach(System.out::println);
+    }
+
+    static class LangageStat {
+        String name;
+        int stat;
+
+        public LangageStat(String name, int stat) {
+            this.name = name;
+            this.stat = stat;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getStat() {
+            return stat;
+        }
+
+        @Override
+        public String toString() {
+            return name + " - " + stat;
+        }
+    }
+
+    static class Submission {
+        String user;
+        int score;
+
+        public Submission(String user, int score) {
+            this.user = user;
+            this.score = score;
+        }
+
+        public String getUser() {
+            return user;
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        @Override
+        public String toString() {
+            return user + " | " + score;
+        }
     }
 
     private static Map<String, Map<String, Integer>> banUser(Map<String, Map<String, Integer>> map, String username) {
