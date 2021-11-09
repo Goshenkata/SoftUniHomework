@@ -22,6 +22,7 @@ public class Main {
                 if (!mapOfSubmission.containsKey(language)) {
                     mapOfSubmission.put(language, new HashMap<>());
                     mapOfSubmission.get(language).put(username, points);
+                    langMap.put(language, 1);
                 } else {
                     //if the user has already submitted
                     if (mapOfSubmission.get(language).containsKey(username)) {
@@ -33,6 +34,7 @@ public class Main {
                         //if he is not in, add him
                         mapOfSubmission.get(language).put(username, points);
                     }
+                    langMap.put(language, langMap.get(language) + 1);
                 }
             } else {
                 //banned
@@ -54,35 +56,12 @@ public class Main {
                 .forEach(System.out::println);
 
         System.out.println("Submissions:");
-        List<LangageStat> langageStats = new ArrayList<>();
-        mapOfSubmission.forEach((k, b) -> langageStats.add(new LangageStat(k, b.size())));
-        langageStats.stream()
-                .sorted(Comparator.comparing(LangageStat::getStat).reversed()
-                        .thenComparing(LangageStat::getName))
-                .forEach(System.out::println);
-    }
+        langMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue(Comparator.reverseOrder())
+                        .thenComparing(Map.Entry.comparingByKey()))
+                .forEach(s -> System.out.println(s.getKey() + " - " + s.getValue()));
 
-    static class LangageStat {
-        String name;
-        int stat;
-
-        public LangageStat(String name, int stat) {
-            this.name = name;
-            this.stat = stat;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getStat() {
-            return stat;
-        }
-
-        @Override
-        public String toString() {
-            return name + " - " + stat;
-        }
     }
 
     static class Submission {
