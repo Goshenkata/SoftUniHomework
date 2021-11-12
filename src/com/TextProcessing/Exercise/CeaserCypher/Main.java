@@ -8,7 +8,8 @@ public class Main {
         String input = scanner.nextLine();
         StringBuilder cypher = new StringBuilder();
         for (char character : input.toCharArray()) {
-            cypher.append(character + 3);
+            character += 3;
+            cypher.append(character);
         }
         System.out.println(cypher);
     }
