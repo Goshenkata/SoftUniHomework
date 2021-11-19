@@ -1,4 +1,4 @@
-package com.Regex.exercise;
+package com.Regex.exercise.furniture;
 
 import java.util.ArrayList;
 import java.util.List;
