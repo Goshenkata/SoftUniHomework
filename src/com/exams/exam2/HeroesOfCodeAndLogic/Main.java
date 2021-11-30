@@ -3,8 +3,6 @@ package com.exams.exam2.HeroesOfCodeAndLogic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,11 +23,52 @@ public class Main {
         }
         String input = scanner.nextLine();
         while (!input.equals("End")) {
-            switch (input.split(" - ")[0]) {
+            String command = input.split(" - ")[0];
+            String name = input.split(" - ")[1];
+            switch (command) {
                 case "CastSpell":
-                    String name = input.split(" - ")[1];
+                    int mpNeeded = Integer.parseInt(input.split(" - ")[2]);
+                    String spellName = input.split(" - ")[3];
+                    if (get(heroes, name).getMp() >= mpNeeded) {
+                        heroes = put(heroes, get(heroes, name).setHp(get(heroes, name).getMp() - mpNeeded));
+                        System.out.printf("%s has successfully cast %s and now has %d MP!%n", name, spellName, get(heroes, name).getMp());
+                    } else {
+                        System.out.printf("%s does not have enough MP to cast %s!%n", name, spellName);
+                    }
+                    break;
+                case "TakeDamage":
+                    int damage = Integer.parseInt(input.split(" - ")[2]);
+                    String attacker = input.split(" - ")[3];
+                    if (get(heroes, name).getHp() - damage > 0) {
+                        heroes = put(heroes, get(heroes, name).setHp(get(heroes, name).getHp() - damage));
+                        System.out.printf("%s was hit for %d HP by %s and now has %d HP left!%n", name, damage, attacker, get(heroes, name).getHp());
+                    } else {
+                        System.out.printf("%s has been killed by %s!", name, attacker);
+                        heroes = remove(heroes, name);
+                    }
+                case "Recharge":
+                    int amount = Integer.parseInt(input.split(" - ")[2]);
+                    if (get(heroes, name).getMp() + amount > 200) {
+                        heroes = put(heroes, get(heroes, name).setMp(200));
+                    } else {
+                        heroes = put(heroes, get(heroes, name).setMp(get(heroes, name).getMp() + amount));
+                    }
+                    System.out.printf("%s recharged for %d MP!", name, amount);
+                    break;
+                case "Heal":
+                    
             }
         }
+    }
+
+    private static List<Hero> remove(List<Hero> heroes, String name) {
+        for (int i = 0; i < heroes.size(); i++) {
+            if (heroes.get(i).getName().equals(name)) {
+                heroes.remove(i);
+                break;
+            }
+        }
+        return heroes;
     }
 
     private static List<Hero> put(List<Hero> heroes, Hero newHero) {
@@ -56,12 +95,12 @@ public class Main {
 
     static class Hero {
         String name;
-        int gp;
+        int hp;
         int mp;
 
-        public Hero(String name, int gp, int mp) {
+        public Hero(String name, int hp, int mp) {
             this.name = name;
-            this.gp = gp;
+            this.hp = hp;
             this.mp = mp;
         }
 
@@ -70,8 +109,8 @@ public class Main {
             return name;
         }
 
-        public int getGp() {
-            return gp;
+        public int getHp() {
+            return hp;
         }
 
         public int getMp() {
@@ -83,8 +122,8 @@ public class Main {
             return this;
         }
 
-        public Hero setGp(int gp) {
-            this.gp = gp;
+        public Hero setHp(int hp) {
+            this.hp = hp;
             return this;
         }
 
