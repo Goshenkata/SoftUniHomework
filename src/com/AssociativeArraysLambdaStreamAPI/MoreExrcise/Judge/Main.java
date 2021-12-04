@@ -48,7 +48,8 @@ public class Main {
         System.out.println("Individual standings:");
         AtomicInteger count = new AtomicInteger(1);
         studentsMax.entrySet().stream()
-                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed()
+                        .thenComparing(Map.Entry.comparingByKey()))
                 .forEach(o -> {
                     System.out.printf("%d. %s -> %d%n", count.get(), o.getKey(), o.getValue());
                     count.getAndIncrement();
