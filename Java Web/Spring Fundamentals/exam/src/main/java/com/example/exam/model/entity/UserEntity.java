@@ -2,18 +2,20 @@ package com.example.exam.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "users")
 public class UserEntity extends BaseEntity{
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, name = "username")
     String username;
-    @Column
+    @Column(name = "first_name")
     String firstName;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "last_name")
     String lastName;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "password")
     String password;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, name = "email")
     String email;
 
     public UserEntity() {
