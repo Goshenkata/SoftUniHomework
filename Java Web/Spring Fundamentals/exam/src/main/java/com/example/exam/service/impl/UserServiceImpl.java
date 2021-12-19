@@ -1,5 +1,6 @@
 package com.example.exam.service.impl;
 
+import com.example.exam.model.DTO.LoginBindingModel;
 import com.example.exam.model.DTO.UserRegistrationBindingModel;
 import com.example.exam.model.entity.UserEntity;
 import com.example.exam.repository.UserRepostory;
@@ -24,8 +25,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity login(UserRegistrationBindingModel userRegistrationBindingModel) {
-        UserEntity user = userRepostory.getElementByUsernameAndPassword();
+    public UserEntity login(LoginBindingModel loginBindingModel) {
+        UserEntity user = userRepostory.getByUsernameAndPassword(loginBindingModel.getUsername(), loginBindingModel.getPassword());
         userRepostory.save(user);
         return user;
     }

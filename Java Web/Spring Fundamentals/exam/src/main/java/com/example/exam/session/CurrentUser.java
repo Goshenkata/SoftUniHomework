@@ -1,7 +1,9 @@
 package com.example.exam.session;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+@Component
 @SessionScope
 public class CurrentUser {
     private Long id;
@@ -15,8 +17,7 @@ public class CurrentUser {
         return this;
     }
 
-    public CurrentUser(Long id) {
-        this.id = id;
+    public CurrentUser() {
     }
 
 }

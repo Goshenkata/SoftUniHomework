@@ -39,12 +39,12 @@ public class UserController {
     public String loginUser(@Valid LoginBindingModel loginBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("loginBindingModel", loginBindingModel);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginBindingModel", loginBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginBindingModel", bindingResult);
             return "redirect:login";
         }
-        UserEntity user = userService.login(userRegistrationBindingModel());
+        UserEntity user = userService.login(loginBindingModel);
         currentUser.setId(user.getId());
-        return "/";
+        return "redirect:/";
     }
 
     @GetMapping("/register")
@@ -61,7 +61,8 @@ public class UserController {
         }
         //save to database;
         userService.register(userRegistrationBindingModel);
-        redirectAttributes.addFlashAttribute("userLoginBindingModel", modelMapper.map(userRegistrationBindingModel, LoginBindingModel.class));
+        LoginBindingModel loginBindingModel = modelMapper.map(userRegistrationBindingModel, LoginBindingModel.class);
+        redirectAttributes.addFlashAttribute("loginBindingModel", loginBindingModel);
         return "redirect:login";
     }
 
@@ -69,7 +70,7 @@ public class UserController {
     private UserRegistrationBindingModel userRegistrationBindingModel() {
         return new UserRegistrationBindingModel();
     }
-    @ModelAttribute("LoginBindingModel")
+    @ModelAttribute("loginBindingModel")
     private LoginBindingModel loginBindingModel() {
         return new LoginBindingModel();
     }

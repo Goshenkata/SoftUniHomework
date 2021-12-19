@@ -1,5 +1,6 @@
 package com.example.exam.configuration;
 
+import com.example.exam.session.CurrentUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,4 +12,5 @@ public class ApplicationBeanConfiguration {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
 }
