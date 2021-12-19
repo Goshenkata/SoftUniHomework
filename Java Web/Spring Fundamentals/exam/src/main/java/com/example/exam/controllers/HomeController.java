@@ -1,4 +1,4 @@
-package com.example.exam.service;
+package com.example.exam.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 

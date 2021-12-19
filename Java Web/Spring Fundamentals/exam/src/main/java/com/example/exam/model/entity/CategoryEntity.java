@@ -13,4 +13,24 @@ public class CategoryEntity extends BaseEntity {
     @Column(nullable = false, name = "needed_time")
     Integer timeNeeded;
 
+    public CategoryName getName() {
+        return name;
+    }
+
+    public CategoryEntity setName(CategoryName name) {
+        this.name = name;
+        return this;
+    }
+
+    public Integer getTimeNeeded() {
+        return timeNeeded;
+    }
+
+    public CategoryEntity setTimeNeeded(Integer timeNeeded) {
+        this.timeNeeded = timeNeeded;
+        return this;
+    }
+
+    public CategoryEntity() {
+    }
 }
