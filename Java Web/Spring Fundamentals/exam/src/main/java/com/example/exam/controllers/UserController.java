@@ -1,7 +1,7 @@
 package com.example.exam.controllers;
 
-import com.example.exam.model.DTO.LoginBindingModel;
-import com.example.exam.model.DTO.UserRegistrationBindingModel;
+import com.example.exam.model.DTO.binding.LoginBindingModel;
+import com.example.exam.model.DTO.binding.UserRegistrationBindingModel;
 import com.example.exam.model.entity.UserEntity;
 import com.example.exam.service.UserService;
 import com.example.exam.session.CurrentUser;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -28,6 +29,12 @@ public class UserController {
         this.userService = userService;
         this.modelMapper = modelMapper;
         this.currentUser = currentUser;
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return "redirect:/";
     }
 
     @GetMapping("/login")

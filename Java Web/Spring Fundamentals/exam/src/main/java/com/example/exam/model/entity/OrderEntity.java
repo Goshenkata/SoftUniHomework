@@ -6,11 +6,37 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
-public class OrderEntity extends BaseEntity{
+public class OrderEntity extends BaseEntity {
     @Column(nullable = false, name = "name")
     String name;
+
     @Column(nullable = false, name = "price")
     BigDecimal price;
+
+    @Column(nullable = false, name = "order_time")
+    LocalDateTime orderTime;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    CategoryEntity category;
+
+    @Column(nullable = false, columnDefinition = "TEXT", name = "description")
+    String description;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    UserEntity employee;
+
+    @Override
+    public String toString() {
+        return "OrderEntity{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", orderTime=" + orderTime +
+                ", category=" + category +
+                ", description='" + description + '\'' +
+                ", employee=" + employee +
+                '}';
+    }
+
 
     public String getName() {
         return name;
@@ -69,12 +95,4 @@ public class OrderEntity extends BaseEntity{
     public OrderEntity() {
     }
 
-    @Column(nullable = false, name = "order_time")
-    LocalDateTime orderTime;
-    @ManyToOne
-    CategoryEntity category;
-    @Column(nullable = false, columnDefinition = "TEXT", name = "description")
-    String description;
-    @ManyToOne
-    UserEntity employee;
 }

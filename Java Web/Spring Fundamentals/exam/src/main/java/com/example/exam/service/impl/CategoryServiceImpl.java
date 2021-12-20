@@ -20,20 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
             for (CategoryName categoryName : CategoryName.values()) {
                 CategoryEntity category = new CategoryEntity();
                 category.setName(categoryName);
-                switch (categoryName) {
-                    case COFFEE:
-                        category.setTimeNeeded(2);
-                        break;
-                    case CAKE:
-                        category.setTimeNeeded(10);
-                        break;
-                    case DRINK:
-                        category.setTimeNeeded(1);
-                        break;
-                    case OTHER:
-                        category.setTimeNeeded(5);
-                        break;
-                }
+                category.setTimeNeeded();
                 categoryRepository.save(category);
             }
         }

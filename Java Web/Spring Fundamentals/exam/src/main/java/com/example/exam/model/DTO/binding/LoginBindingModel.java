@@ -1,4 +1,4 @@
-package com.example.exam.model.DTO;
+package com.example.exam.model.DTO.binding;
 
 import javax.validation.constraints.Size;
 

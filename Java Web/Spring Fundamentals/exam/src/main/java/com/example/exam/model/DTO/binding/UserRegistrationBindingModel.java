@@ -1,7 +1,6 @@
-package com.example.exam.model.DTO;
+package com.example.exam.model.DTO.binding;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 

@@ -3,6 +3,8 @@ package com.example.exam.session;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+import javax.transaction.Transactional;
+
 @Component
 @SessionScope
 public class CurrentUser {
