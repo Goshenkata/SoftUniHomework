@@ -12,13 +12,14 @@ import java.util.Optional;
 
 public class Database {
 
-    private static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/minions_db";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+    public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/minions_db";
+    public static final String USER = "root";
+    public static final String PASSWORD = "${mysqlpass}";
+
     Connection connection;
 
-    public Database() throws SQLException {
-        this.connection = DriverManager.getConnection(CONNECTION_STRING, USER, PASSWORD);
+    public Database(Connection connection) throws SQLException {
+        this.connection = connection;
     }
 
     public void close() throws SQLException {

@@ -5,7 +5,8 @@ import entities.Minion;
 import entities.Town;
 import entities.Villain;
 
-import javax.xml.crypto.Data;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -13,8 +14,8 @@ import java.util.Scanner;
 
 public class Ex4 {
     public static void main(String[] args) throws SQLException {
+        Connection connection = DriverManager.getConnection(Database.CONNECTION_STRING, Database.USER, Database.PASSWORD);
         Database database = new Database();
-
         Scanner scanner = new Scanner(System.in);
         String[] info = scanner.nextLine().split(":* ");
         Minion minion = new Minion();
@@ -36,6 +37,7 @@ public class Ex4 {
         database.insertMinion(minion);
 
         String villainName = scanner.nextLine().split(": ")[1];
+        //if the minion isn't in the database insert it
         Optional<Villain> villain = database.getVillainByName(villainName);
         if (villain.isEmpty()) {
             Villain newVillain = new Villain();
