@@ -13,7 +13,8 @@ import java.util.Scanner;
 public class Ex3 {
 
     public static void main(String[] args) throws SQLException {
-        Database database = new Database();
+        Connection connection = DriverManager.getConnection(Database.CONNECTION_STRING, Database.USER, Database.PASSWORD);
+        Database database = new Database(connection);
 
         Scanner scanner = new Scanner(System.in);
         int villain_id = Integer.parseInt(scanner.nextLine());
@@ -29,5 +30,6 @@ public class Ex3 {
         }
 
         database.close();
+        connection.close();
     }
 }

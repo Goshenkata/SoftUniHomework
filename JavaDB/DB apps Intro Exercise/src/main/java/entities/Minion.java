@@ -3,17 +3,17 @@ package entities;
 public class Minion {
     Integer id;
     String name;
-    int age;
-    int town_id;
+    Integer age;
+    Integer town_id;
 
     public Minion() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public Minion setId(int id) {
+    public Minion setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -27,20 +27,20 @@ public class Minion {
         return this;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public Minion setAge(int age) {
+    public Minion setAge(Integer age) {
         this.age = age;
         return this;
     }
 
-    public int getTown_id() {
+    public Integer getTown_id() {
         return town_id;
     }
 
-    public Minion setTown_id(int town_id) {
+    public Minion setTown_id(Integer town_id) {
         this.town_id = town_id;
         return this;
     }

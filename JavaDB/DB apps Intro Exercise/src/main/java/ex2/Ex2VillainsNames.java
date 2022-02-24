@@ -1,14 +1,14 @@
 package ex2;
 
+import db.Database;
+
 import java.sql.*;
 import java.util.Properties;
 
 public class Ex2VillainsNames {
     public static void main(String[] args) throws SQLException {
         Properties properties = new Properties();
-        properties.setProperty("user", "root");
-        properties.setProperty("password", "");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/minions_db", properties);
+        Connection connection = DriverManager.getConnection(Database.CONNECTION_STRING,Database.USER,Database.PASSWORD);
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT \n" +
                 "    `name`, COUNT(DISTINCT mv.minion_id) AS count_minions\n" +
                 "FROM\n" +

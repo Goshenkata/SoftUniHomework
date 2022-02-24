@@ -1,14 +1,14 @@
 package entities;
 
 public class Town {
-    int id;
+    Integer id;
     String name;
     String country;
 
     public Town() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

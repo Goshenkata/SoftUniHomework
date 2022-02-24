@@ -13,8 +13,8 @@ import java.util.Optional;
 public class Database {
 
     public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/minions_db";
-    public static final String USER = "root";
-    public static final String PASSWORD = "${mysqlpass}";
+    public static final String USER = "myuser";
+    public static final String PASSWORD = "password";
 
     Connection connection;
 
@@ -66,14 +66,15 @@ public class Database {
     public Optional<Town> getTownByName(String name) throws SQLException {
         Connection connection = DriverManager.getConnection(CONNECTION_STRING, USER, PASSWORD);
         PreparedStatement preparedStatement = connection.prepareStatement(
-                "select * from towns where name like ?"
+                "select id, name, country from towns where name like ?"
         );
+        preparedStatement.setString(1, name);
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             Town town = new Town();
             town.setId(resultSet.getInt("id"));
             town.setName(resultSet.getString("name"));
-            town.setCountry(resultSet.getString("country_name"));
+            town.setCountry(resultSet.getString("country"));
             return Optional.of(town);
         }
         return Optional.empty();
@@ -85,12 +86,13 @@ public class Database {
                 "insert into towns (name, country) values (?, ?);");
         preparedStatement.setString(1,newTown.getName());
         preparedStatement.setString(2, newTown.getCountry());
-        preparedStatement.executeQuery();
+        preparedStatement.executeUpdate();
     }
 
     public Optional<Villain> getVillainByName(String villainName) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "select * from villains where name like ?");
+        preparedStatement.setString(1,villainName);
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             Villain villain = new Villain();
@@ -108,7 +110,7 @@ public class Database {
         );
         preparedStatement.setString(1,villain.getName());
         preparedStatement.setString(2,villain.getEvillnesFactor());
-        preparedStatement.executeQuery();
+        preparedStatement.executeUpdate();
     }
 
     public void insertMinion(Minion minion) throws SQLException {
@@ -118,7 +120,7 @@ public class Database {
         preparedStatement.setString(1,minion.getName());
         preparedStatement.setInt(2, minion.getAge());
         preparedStatement.setInt(3, minion.getTown_id());
-        preparedStatement.executeQuery();
+        preparedStatement.executeUpdate();
     }
 
     public void insertMinionVillain(int villainId, int minionId) throws SQLException {
@@ -127,6 +129,18 @@ public class Database {
         );
         preparedStatement.setInt(1,minionId);
         preparedStatement.setInt(2, villainId);
-        preparedStatement.executeQuery();
+        preparedStatement.executeUpdate();
+    }
+
+    public Optional<Integer> getMinionIdFromName(String name) throws SQLException {
+        PreparedStatement preparedStatement =
+                connection.prepareStatement(
+                        "select id from minions where name like ?");
+        preparedStatement.setString(1,name);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            return Optional.of(resultSet.getInt("id"));
+        }
+        return Optional.empty();
     }
 }
