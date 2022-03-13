@@ -134,7 +134,6 @@ public class Book {
         return this;
     }
 
-    public Book() {
+    public Book() {}
 
-    }
 }
