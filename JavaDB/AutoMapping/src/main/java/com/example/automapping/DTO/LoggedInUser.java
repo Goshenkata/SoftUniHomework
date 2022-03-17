@@ -10,6 +10,16 @@ public class LoggedInUser {
     String email;
     String password;
     String fullName;
+    boolean isAdmin;
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public LoggedInUser setAdmin(boolean admin) {
+        isAdmin = admin;
+        return this;
+    }
 
     public LoggedInUser() {
     }

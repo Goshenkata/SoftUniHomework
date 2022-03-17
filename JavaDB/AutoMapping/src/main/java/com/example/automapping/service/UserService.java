@@ -1,6 +1,7 @@
 package com.example.automapping.service;
 
 import com.example.automapping.DTO.LoggedInUser;
+import com.example.automapping.entities.Games;
 import com.example.automapping.entities.User;
 import com.example.automapping.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -37,8 +38,20 @@ public class UserService {
     public LoggedInUser loginUser(String email, String password) {
         Optional<User> user = userRepository.findByEmailAndPassword(email, password);
         if (user.isEmpty()) {
+            System.out.println("Incorrect username / password");
             return null;
         }
+        System.out.println("Successfully logged in " + user.get().getFullName().split(" ")[0]);
         return modelMapper.map(user.get(), LoggedInUser.class);
+    }
+
+    public void getGames(String email) {
+        Optional<User> byEmail = userRepository.findByEmail(email);
+        if (byEmail.isPresent()) {
+            User user = byEmail.get();
+            user.getGames().stream().map(Games::getTitle).forEach(System.out::println);
+        } else {
+            System.out.println("Invaid logged in user");
+        }
     }
 }

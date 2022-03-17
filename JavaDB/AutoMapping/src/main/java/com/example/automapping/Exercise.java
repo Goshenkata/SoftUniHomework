@@ -5,15 +5,17 @@ import com.example.automapping.config.GameDTO;
 import com.example.automapping.service.GamesService;
 import com.example.automapping.service.UserService;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import static com.example.automapping.helper.Validator.*;
+import static java.lang.Long.parseLong;
+
+@Component
 public class Exercise implements CommandLineRunner {
 
     UserService userService;
@@ -29,29 +31,72 @@ public class Exercise implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        String commands[] = scanner.nextLine().split("\\|");
-        switch (commands[0]) {
-            case "RegisterUser":
-                registerUser(commands);
-                break;
-            case "LoginUser":
-                loginUser(commands);
-                break;
-            case "Logout":
-                loggedInUser = null;
-                break;
-            case "AddGame":
-                addGame(commands);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + commands[0]);
+        String[] commands = scanner.nextLine().split("\\|");
+
+        while (!commands[0].equals("exit")) {
+            switch (commands[0]) {
+                case "RegisterUser":
+                    registerUser(commands);
+                    break;
+                case "LoginUser":
+                    loginUser(commands);
+                    break;
+                case "Logout":
+                    if (loggedInUser.getEmail() == null) {
+                        System.out.println("Cannot log out. No user was logged in.");
+                    } else {
+                        System.out.printf("User %s successfully logged out%n", loggedInUser.getFullName().split(" ")[0]);
+                        loggedInUser = null;
+                    }
+                    break;
+                case "AddGame":
+                    if (loggedInUser.getEmail() != null && loggedInUser.isAdmin()) {
+                        addGame(commands);
+                    } else System.out.println("Must be admin to perform this action");
+                    break;
+                case "EditGame":
+                    if (loggedInUser.getEmail() != null && loggedInUser.isAdmin()) {
+                        edit(commands);
+                    } else System.out.println("Must be admin to perform this action");
+                    break;
+                case "DeleteGame":
+                    Long id = parseLong(commands[1]);
+                    gamesService.delete(id);
+                    break;
+                case "AllGames":
+                    gamesService.getAllGames();
+                    break;
+                case "DetailGame":
+                    gamesService.getInfoByGame(commands[1]);
+                    break;
+                case "OwnedGames":
+                    if (loggedInUser.getEmail() != null) {
+                        userService.getGames(loggedInUser.getEmail());
+                    }
+                default:
+                    throw new IllegalStateException("Unexpected value: " + commands[0]);
+            }
+            commands = scanner.nextLine().split("\\|");
+        }
+    }
+
+
+    private void edit(String[] commands) {
+        Long id = parseLong(commands[1]);
+        if (gamesService.gameExist(id)) {
+            for (int i = 2; i < commands.length; i++) {
+                String value = commands[i];
+                gamesService.edit(value, id);
+            }
+        } else {
+            System.out.println("No game with id");
         }
     }
 
     private void addGame(String[] commands) {
         String title = commands[1];
         BigDecimal price = new BigDecimal(commands[2]);
-        long size = Long.parseLong(commands[3]);
+        long size = parseLong(commands[3]);
         String trailer = commands[4];
         String imageUrl = commands[5];
         String description = commands[6];
@@ -62,12 +107,9 @@ public class Exercise implements CommandLineRunner {
                     validPrice(price) &&
                     validSize(size) &&
                     validTrailer(trailer) &&
-                    validImageURL(imageUrl)
+                    validImageURL(imageUrl) &&
+                    validDescription(description)
             ) {
-
-            }
-            boolean validUrl = validTrailer(trailer);
-            if (validUrl) {
                 GameDTO gameDTO = new GameDTO();
                 gameDTO
                         .setDescription(description)
@@ -75,68 +117,11 @@ public class Exercise implements CommandLineRunner {
                         .setPrice(price)
                         .setSize(size)
                         .setTitle(title)
-                        .setTrailer(matcher.group("url"))
+                        .setTrailer(cropYTUrl(trailer))
                         .setReleaseDate(localDate.get());
-                validateGameAndRegisterGame(gameDTO);
             }
         }
 
-    }
-
-    private boolean validImageURL(String imageUrl) {
-        
-    }
-
-    private boolean validTrailer(String trailer) {
-        Pattern pattern = Pattern.compile("(https:\\/\\/www\\.)*youtube\\.com\\/watch\\?v=(?<url>\\w{11})");
-        Matcher matcher = pattern.matcher(trailer);
-        if (!matcher.matches()) {
-            System.out.println("invalid youtube url");
-            return false;
-        }
-        return true;
-    }
-
-    private Optional<LocalDate> validReleaseDate(String releaseDate) {
-        Pattern pattern = Pattern.compile("(?<year>\\d{4})-(?<month>\\d{2})(?<day>\\d{2})");
-        Matcher matcher = pattern.matcher(releaseDate);
-        if (matcher.matches()) {
-            int year = Integer.parseInt(matcher.group("year"));
-            int day = Integer.parseInt(matcher.group("day"));
-            int month = Integer.parseInt(matcher.group("month"));
-            return Optional.of(LocalDate.of(year, month, day));
-        }
-        System.out.println("date must be in format yyyy-mm-dd");
-        return Optional.empty();
-    }
-
-    public boolean validTitle(String title) {
-        boolean valid = size(title, 3, 100) || title.matches("[A-Z]+");
-        if (!valid)
-            System.out.println("Title – has to begin with an uppercase letter and must have length between 3 and 100 symbols (inclusively).");
-        return valid;
-    }
-
-    public boolean validPrice(BigDecimal price) {
-        boolean valid = !(price.doubleValue() > 0);
-        if (!valid) System.out.println("Price – must be a positive number.");
-        return valid;
-    }
-
-    public boolean validSize(Long size) {
-        boolean valid = size > 0;
-        if (!valid) System.out.println("Size – must be a positive number.");
-        return valid;
-    }
-
-    public boolean validDescription(String description) {
-        boolean valid = description.length() >= 20;
-        if (!valid) System.out.println("Description – must be at least 20 symbols");
-        return valid;
-    }
-
-    public boolean size(String text, int min, int max) {
-        return text.length() >= min && text.length() <= max;
     }
 
 
@@ -153,16 +138,18 @@ public class Exercise implements CommandLineRunner {
         String fullName = commands[4];
         if (isEmailValid(email) && password.equals(confirmPassword)) {
             userService.registerUser(email, password, fullName);
+            System.out.println(fullName.split(" ")[0] + " was registered");
         }
     }
 
     private boolean isEmailValid(String email) {
-        if (!email.contains("@") || email.split("@")[1].contains(".")) {
-            System.out.println("Email – must contain @ sign and a period. It must be unique.");
+        if (!(email.contains("@") && email.split("@")[1].contains("."))) {
+            System.out.println("Incorrect email.");
             return false;
         }
         if (userService.containsEmail(email)) {
             System.out.println("email is already used");
+            return false;
         }
         return true;
     }
