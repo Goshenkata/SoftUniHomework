@@ -26,6 +26,8 @@ public class Games {
     String description;
     @Column
     LocalDate releaseDate;
+    @Column
+    String imageUrl;
     @ManyToMany(mappedBy = "games")
     Set<User> users;
 }

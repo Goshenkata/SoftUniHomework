@@ -12,7 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     String email;
     @Column(nullable = false)
     String password;
@@ -25,6 +25,56 @@ public class User {
     Set<Games> games;
     @Column(nullable = false)
     boolean isAdmin;
-    @OneToMany(mappedBy = "buyer")
-    Set<Order> orders;
+//    @OneToMany(mappedBy = "buyer")
+//    Set<Order> orders;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public User setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public User setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+
+    public Set<Games> getGames() {
+        return games;
+    }
+
+    public User setGames(Set<Games> games) {
+        this.games = games;
+        return this;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public User setAdmin(boolean admin) {
+        isAdmin = admin;
+        return this;
+    }
 }
