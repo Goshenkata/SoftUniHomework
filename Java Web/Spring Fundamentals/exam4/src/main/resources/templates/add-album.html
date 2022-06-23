@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Music DB Application</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header th:replace="commons::nav">
+</header>
+<main class="p-5 bg-blur text-center my-main">
+    <h1 class="text-light border-bottom">Add Album</h1>
+    <div class="d-flex justify-content-center">
+        <form th:action="@{/add}" th:method="POST"
+              th:object="${albumAddDTO}"
+              class="text-light">
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="name">Album name</label>
+                    <input name="name"
+                           id="name"
+                           type="text"
+                           class="form-control"
+                           th:field="*{name}"
+                           th:errorclass="is-invalid"
+                           placeholder="Album name">
+                    <small id="nameError" class="form-text bg-danger rounded invalid-feedback text-light">Name must be between 3 and 20
+                        characters</small>
+                </div>
+                <div class="col">
+                    <label for="imgUrl">Image Url</label>
+                    <input name="imgUrl"
+                           th:field="*{imageURL}"
+                           th:errorclass="is-invalid"
+                           id="imgUrl"
+                           type="text"
+                           class="form-control"
+                           placeholder="Image Url">
+                    <small id="imageUrlError" class="invalid-feedback text-light form-text bg-danger rounded">Image url must be more than 5
+                        characters</small>
+                </div>
+            </div>
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="price">Price</label>
+                    <input name="price"
+
+                           th:field="*{price}"
+                           th:errorclass="is-invalid"
+                           id="price"
+                           type="number"
+                           class="form-control"
+                           placeholder="Price">
+                    <small id="priceError" class="invalid-feedback text-light form-text bg-danger rounded">Price must be positive</small>
+                </div>
+                <div class="col">
+                    <label for="copies">Copies</label>
+                    <input name="copies"
+                           th:field="*{copies}"
+                           th:errorclass="is-invalid"
+                           id="copies"
+                           type="number"
+                           class="form-control"
+                           placeholder="Copies">
+                    <small id="copiesError" class="invalid-feedback text-light form-text bg-danger rounded">Copies must be positive</small>
+                </div>
+            </div>
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="releaseDate">Release date</label>
+                    <input name="releaseDate"
+                           th:field="*{releaseDate}"
+                           th:errorclass="is-invalid"
+                           id="releaseDate"
+                           type="date"
+                           class="form-control"
+                           placeholder="Release date">
+                    <small id="releaseDateError" class="invalid-feedback text-light form-text bg-danger rounded">Release date cannot be in the
+                        future</small>
+                </div>
+                <div class="col">
+                    <label for="producer">Producer</label>
+                    <input name="producer"
+                           id="producer"
+                           type="text"
+                           th:field="*{producer}"
+                           th:errorclass="is-invalid"
+                           class="form-control"
+                           placeholder="Producer">
+                </div>
+            </div>
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="artist">Artist</label>
+                    <select name="artist"
+                            th:field="*{artistName}"
+                            th:errorclass="is-invalid"
+                            id="artist"
+                            class="custom-select">
+                        <option value="" selected>Select Artist</option>
+                        <option th:each="artist: ${artists}" th:text="${artist}" th:value="${artist}" selected>Select Artist</option>
+                    </select>
+                    <small id="artistError" class="invalid-feedback text-light form-text bg-danger rounded">You must select artist</small>
+                </div>
+                <div class="col">
+                    <label for="genre">Genre</label>
+                    <select name="genre"
+                            th:field="*{genre}"
+                            th:errorclass="is-invalid"
+                            id="genre"
+                            class="custom-select">
+                        <option value="" selected>Select genre</option>
+                        <option th:each="genre: ${genres}" th:text="${genre}" th:value="${genre}" selected>Select genre</option>
+                    </select>
+                    <small id="genreError" class="invalid-feedback text-light form-text bg-danger rounded">You must select genre</small>
+                </div>
+            </div>
+
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="description">Description</label>
+                    <textarea name="description"
+                              id="description"
+                              th:field="*{description}"
+                              th:errorclass="is-invalid"
+                              type="text"
+                              class="form-control"
+                              placeholder="Description"></textarea>
+                    <small id="descriptionError" class="invalid-feedback text-light form-text bg-danger rounded">Description length must be more than 5 characters</small>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <button class="btn btn-primary btn-block w-50" type="submit">Add New Album</button>
+            </div>
+        </form>
+    </div>
+</main>
+<footer class="footer bg-blur">
+    <div class="container-fluid text-center">
+        <div class="h5 text-white">
+            &copy;SoftUni Spring Team 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+</body>
+</html>

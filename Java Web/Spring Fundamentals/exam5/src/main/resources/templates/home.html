@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>GIRA</title>
+    <link rel="icon" href="/img/projectLogo.png" type="image/icon type">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/reset-css.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header th:replace="commons::navLogin"></header>
+<div class="page-container">
+    <main class="content-wrap">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Tasks</span></h1>
+        <hr class="hr-3 w-75 bg-white"/>
+        <form class="mx-auto w-75 "
+              th:each="task : ${tasks}"
+              th:object="${task}"
+              th:method="post"
+              th:action="@{|/task/progress/*{id}|}"
+              action="/">
+
+            <div class="card-group task-card">
+                <div class="card">
+
+                    <div class="card-title">
+                        <h5 class="card-title">Name</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small th:text="*{name}">Repair Laptop</small>
+                    </div>
+                </div>
+                <div class="card">
+
+                    <div class="card-title">
+                        <h5 class="card-title">Assigned to</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small th:text="*{assignedToUsername}">George</small>
+                    </div>
+                </div>
+                <div class="card">
+
+                    <div class="card-title">
+                        <h5 class="card-title">Classification</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="classifications"
+                               th:text="*{classificationClassificationName}"
+                               th:class="*{classificationClassificationName}">SUPPORT</small>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <h5 class="card-title">Due Date</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small th:text="*{dueDate}">2020-08-30</small>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <h5 class="card-title">Progress</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small th:text="*{progress}">OPEN</small>
+                    </div>
+                </div>
+
+                <button type="submit" class="button prBtn">Progress</button>
+            </div>
+
+        </form>
+    </main>
+
+    <footer class="footer">
+        <div class="container-fluid text-center">
+            <div class="footer-background h6">
+                &copy; Spring team 2020. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Music DB Application</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header th:replace="commons::nav">
+</header>
+<main class="p-5 align-content-center bg-blur my-main">
+    <h1 class="text-light border-left pl-2">Welcome to</h1>
+    <h1 class="text-light border-left pl-2">My Music DB Application!</h1>
+    <div class="d-flex justify-content-center">
+        <div class="my-index-div w-50">
+            <iframe class="w-100 h-100" src="https://www.youtube.com/embed/Q93n3dvaaTI?rel=0" title="YouTube video"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</main>
+<footer class="footer bg-blur">
+    <div class="container-fluid text-center">
+        <div class="h5 text-white">
+            &copy;SoftUni Spring Team 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+</body>
+</html>

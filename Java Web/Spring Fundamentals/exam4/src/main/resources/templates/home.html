@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Music DB Application</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header th:replace="commons::nav">
+</header>
+<main class="p-5 align-content-center bg-blur my-main">
+    <h2 class="text-light border-bottom" th:text="|Total sold copies
+        of all albums: ${total}|"></h2>
+    <div class="row">
+        <div class="col-md-3"
+             th:each="album: ${albums}"
+             th:object="${album}"
+        >
+            <div
+                    class="card mb-4 box-shadow">
+                <img th:src="*{imageURL}" class="card-img-top" alt="Thumbnail [100%x225]"
+                     data-holder-rendered="true"
+                     style="height: 225px; width: 100%; display: block;">
+                <div class="card-body">
+                    <div class="text-center">
+                        <p class="card-text border-bottom " th:text="|Name: *{name}|"></p>
+                        <p class="card-text border-bottom " th:text="|Artist: *{artistName}|"></p>
+                        <p class="card-text border-bottom " th:text="|Genre: *{genre}|"></p>
+                        <p class="card-text border-bottom " th:text="|Price: *{price}|"></p>
+                        <p class="card-text border-bottom" th:text="|Release Date: *{releaseDate}|"></p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <form class="btn-group"
+                              th:method="post"
+                              th:action="@{|/album/*{id}|}"
+                        >
+                            <button type="submit"
+                                    class="btn btn-sm btn-outline-secondary">Delete
+                            </button>
+                        </form>
+                        <small class="text-muted" th:text="*{copies}"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="footer bg-blur">
+    <div class="container-fluid text-center">
+        <div class="h5 text-white">
+            &copy;SoftUni Spring Team 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+</body>
+</html>
