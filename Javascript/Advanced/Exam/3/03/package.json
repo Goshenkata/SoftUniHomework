@@ -1,0 +1,11 @@
+{
+  "name": "03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "flowerShop.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC"
+}
