@@ -6,3 +6,4 @@ This is where i'm going to upload my homework from SoftUni, as well as some code
 * [Spring Data](https://softuni.bg/certificates/details/130717/5c11d2e0)
 * [Spring Fundamentals](https://softuni.bg/certificates/details/136842/a9ba41b0)
 * [Spring Advanced](https://softuni.bg/certificates/details/139873/eb8ccc5d)
+* [Javascript Advanced](https://softuni.bg/certificates/details/145496/2aa9d693)
