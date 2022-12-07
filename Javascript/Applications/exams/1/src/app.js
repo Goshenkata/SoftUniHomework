@@ -5,7 +5,10 @@ import { loginPage } from './view/login.js';
 import { logout } from './api/data.js';
 import { registerPage } from './view/register.js'
 import { dashboardPage } from './view/dashboard.js'
+import { detailsPage } from './view/details.js'
+import { editPage } from './view/editPage.js'
 import { addPage } from './view/add.js'
+import { searchPage } from './view/search.js'
 
 const root = document.querySelector('main');
 
@@ -16,6 +19,9 @@ page('/logout', logoutUser)
 page('/register', registerPage)
 page('/dashboard', dashboardPage)
 page('/add', addPage)
+page('/details/:id', detailsPage)
+page('/edit/:id', editPage)
+page('/search', searchPage)
 updateUserNav()
 page.start()
 

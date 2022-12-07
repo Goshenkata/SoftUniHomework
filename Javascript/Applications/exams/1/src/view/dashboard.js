@@ -5,10 +5,9 @@ const dashboardHtml = (shoes) => html`
         <section id="dashboard">
           <h2>Collectibles</h2>
           <ul class="card-wrapper">
-					${shoes.lenght == 0 ?
-						html` <h2>There are no items added yet.</h2> ` :
-						html`${shoes.map(shoe => shoeTemplate(shoe))}`
-					}
+					${shoes.length == 0 ?
+						html`<h2>There are no items added yet.</h2>` :
+						html`${shoes.map(shoe => shoeTemplate(shoe))} ` }
           </ul>
         </section>
 `
@@ -20,15 +19,14 @@ const shoeTemplate = (shoe) => html`
               </p>
               <p>
                 <strong>Model: </strong
-                ><span class="model">${shoe.brand}</span>
+                ><span class="model">${shoe.model}</span>
               </p>
               <p><strong>Value:</strong><span class="value">${shoe.value}</span>$</p>
-              <a class="details-btn" href="">Details</a>
+              <a class="details-btn" href="details/${shoe._id}">Details</a>
             </li>
 `
 
 export async function dashboardPage(ctx) {
 	const shoes = await getShoes()
-	console.log(shoes)
 	ctx.render(dashboardHtml(shoes))
 }
