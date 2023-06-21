@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a9580795-0762-4ca9-8024-3b3116b1cda7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/magicGame.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/magicGame/core/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/magicGame/core/EngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/magicGame/models/magicians/MagicianImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/magicGame/models/magicians/MagicianImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/magicGame/models/magics/MagicImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/magicGame/models/magics/MagicImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/magicGame/models/magics/RedMagic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/magicGame/models/magics/RedMagic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/magicGame/models/region/RegionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/magicGame/models/region/RegionImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2NvMOJIk9Q4HQC7tPHr1pbBvx7T" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/cirno/Projects/SoftUniHomework/Java Advanced/test/test8/UnitTesting",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="magicGame.repositories.interfaces" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="magicGame.Main" />
+      <module name="MagicGameApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a9580795-0762-4ca9-8024-3b3116b1cda7" name="Changes" comment="" />
+      <created>1680540069105</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680540069105</updated>
+      <workItem from="1680540070100" duration="7232000" />
+      <workItem from="1680547566818" duration="1866000" />
+      <workItem from="1680622533940" duration="939000" />
+      <workItem from="1680623837058" duration="109000" />
+      <workItem from="1680623954350" duration="7352000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/magicGame/models/region/RegionImpl.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/magicGame/models/region/RegionImpl.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/magicGame/models/region/RegionImpl.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

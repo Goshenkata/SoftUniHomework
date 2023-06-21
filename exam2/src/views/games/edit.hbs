@@ -1,0 +1,34 @@
+<main id="edit">
+    <!-- In case of error, you should display div with class "errorContainer" -->
+    <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+
+    {{>error}}
+    <section id="edit-container">
+        <div class="edit-container-info">
+            <h1>Edit Game Code Offer</h1>
+            <form method="POST">
+                <label>Platform:</label>
+                <select id="platform" name="platform">
+                    <option value="">-------</option>
+                    <option {{#if (equal game.platform "PC")}}selected{{/if}}  value="PC">PC</option>
+                    <option {{#if (equal game.platform "Nintendo")}}selected{{/if}} value="Nintendo">Nintendo</option>
+                    <option {{#if (equal game.platform "PS4")}}selected{{/if}} value="PS4">PS4</option>
+                    <option {{#if (equal game.platform "PS5")}}selected{{/if}} value="PS5">PS5</option>
+                    <option {{#if (equal game.platform "XBOX")}}selected{{/if}} value="XBOX">XBOX</option>
+                </select>
+                <label>Name:</label>
+                <input type="text" id="name" name="name" value="{{game.name}}">
+                <label>Image:</label>
+                <input type="text" id="image" name="image" value="{{game.image}}"
+                       placeholder="https://image.api.playstation.com/vulcan/ap/rnd/202208/0921/dR9KJAKDW2izPbptHQbh3rnj.png">
+                <label>Price:</label>
+                <input type="number" id="price" name="price" value="{{game.price}}">
+                <label>Genre:</label>
+                <input type="text" id="genre" name="genre" value="{{game.genre}}">
+                <label>Description:</label>
+                <textarea id="description" name="description">{{game.description}}</textarea>
+                <input type="submit" id="btn" value="EDIT"></input>
+            </form>
+        </div>
+    </section>
+</main>

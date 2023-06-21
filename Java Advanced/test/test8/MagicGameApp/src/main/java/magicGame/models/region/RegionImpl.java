@@ -17,13 +17,14 @@ public class RegionImpl implements Region{
         for (Magician magician : magicians) {
             if (magician instanceof  BlackWidow) {
                 blackWidows.add(magician);
-            } else {
+            } else if (magician instanceof Wizard){
                 wizards.add(magician);
             }
         }
         while (!blackWidows.isEmpty() && !wizards.isEmpty()) {
             Wizard wizard = (Wizard) wizards.get(0);
             BlackWidow blackWidow = (BlackWidow) blackWidows.get(0);
+
             blackWidow.takeDamage(wizard.getMagic().fire());
             if (blackWidow.isAlive()) {
                 wizard.takeDamage(blackWidow.getMagic().fire());

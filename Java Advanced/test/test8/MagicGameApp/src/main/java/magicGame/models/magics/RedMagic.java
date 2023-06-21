@@ -9,7 +9,7 @@ public class RedMagic extends MagicImpl{
     @Override
     public int fire() {
         if (bullets - 1 >=0) {
-            bullets--;
+            bullets-= 1;
             return 1;
         }
         bullets = 0;

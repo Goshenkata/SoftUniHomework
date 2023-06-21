@@ -10,7 +10,7 @@ public abstract class MagicianImpl implements Magician{
     private boolean isAlive;
     private Magic magic;
 
-    public MagicianImpl(String username, int health, int protection, Magic magic) {
+    protected MagicianImpl(String username, int health, int protection, Magic magic) {
         if (username == null || username.isBlank()) {
             throw new NullPointerException(ExceptionMessages.INVALID_MAGICIAN_NAME);
         }
@@ -57,16 +57,11 @@ public abstract class MagicianImpl implements Magician{
 
     @Override
     public void takeDamage(int points) {
-        if (protection > 0) {
-            protection -= points;
-            if (protection < 0){
-                health -= Math.abs(protection);
-                protection = 0;
-            }
-        } else {
-            health -= points;
+        this.protection -= points;
+        if (this.protection < 0){
+            health += this.protection;
         }
-        if (health <= 0) {
+        if (health <= 0){
             isAlive = false;
         }
     }

@@ -2,11 +2,11 @@ package magicGame.models.magics;
 
 import magicGame.common.ExceptionMessages;
 
-public abstract class MagicImpl implements Magic{
+public abstract class MagicImpl implements Magic {
     private String name;
     private int bulletsCount;
 
-    public MagicImpl(String name, int bulletsCount) {
+    protected MagicImpl(String name, int bulletsCount) {
         if (name == null || name.isBlank()) {
             throw new NullPointerException(ExceptionMessages.INVALID_MAGIC_NAME);
         }

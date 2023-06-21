@@ -1,0 +1,15 @@
+<main>
+    <h1>Browser</h1>
+    <form action="/" method="GET">
+        <input type="text" class="search" value="{{search}}" name="search" placeholder="Search...">
+        <input type="number" name="from" value="{{from}}" class="difficulty" placeholder="Difficulty from...">
+        <span>-</span>
+        <input type="number" name="to" value="{{to}}" class="difficulty" placeholder="Difficulty to...">
+        <input type="submit" value="search">
+    </form>
+    {{#each cubes}}
+        {{>cube}}
+    {{else}}
+        <p>there are no cubes yet!</p>
+    {{/each}}
+</main>
