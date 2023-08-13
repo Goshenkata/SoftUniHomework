@@ -11,4 +11,4 @@ This is where i'm going to upload my homework from SoftUni, as well as some code
 * [JS-Back-End](https://softuni.bg/certificates/details/175221/4ff269f0)
 
 
-## [Diploma] (https://softuni.bg/certificates/details/175324/91cda5de)
+## [Diploma](https://softuni.bg/certificates/details/175324/91cda5de)
