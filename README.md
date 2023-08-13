@@ -8,3 +8,7 @@ This is where i'm going to upload my homework from SoftUni, as well as some code
 * [Spring Advanced](https://softuni.bg/certificates/details/139873/eb8ccc5d)
 * [Javascript Advanced](https://softuni.bg/certificates/details/145496/2aa9d693)
 * [Javascript Applications](https://softuni.bg/certificates/details/149889/24b10715)
+* [JS-Back-End](https://softuni.bg/certificates/details/175221/4ff269f0)
+
+
+## [Diploma] (https://softuni.bg/certificates/details/175324/91cda5de)
